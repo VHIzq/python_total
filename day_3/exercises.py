@@ -1,0 +1,1 @@
+e_capital = dic['c2'][1].upper()
