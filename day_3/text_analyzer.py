@@ -21,23 +21,25 @@ count_first = text.count(first_letter)
 count_second = text.count(second_letter)
 count_third = text.count(third_letter)
 
-length_text = len(text)
-
-list_text = list(text)
-reverse_text = list_text.reverse()
-print(reverse_text)
+num_words = text.split()
+length_text = len(num_words)
 
 
-is_python = str('python' in text)
+num_words.reverse()
+new_text = ' '.join(num_words)
+print(new_text)
 
-responses = {'true': 'yes', 'false': 'no'}
 
-has_python = is_python in responses
+is_python = 'python' in text
+
+responses = {True: 'has', False: 'don"t have'}
+
+has_python = responses[is_python]
 
 answer = f"""
     The first letter repeats: {count_first}, the second one: {count_second} and the third one: {count_third}.
-    The text has: {length_text} words. The first word is {first_word} and the last one is: {last_word}.
-    The reverse text is: {reverse_text}.
+    The text has: {length_text} words. The first letter is {first_word} and the last one is: {last_word}.
+    The reverse text is: {new_text}.
     Your text {has_python} the word Python.
 """
 
