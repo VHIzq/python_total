@@ -1,36 +1,63 @@
-from random import choice
-chars = ''
+from random import *
 
-
-def check_letter(word_, life_):
-    has_letter = ask in word_
-    if not has_letter:
-        life_ -= 1
-        print(f'''Wrong! 
-        Lost one life! 
-        lifes: {life_}''')
-
-
-def generate_spaces(word_):
-    length_spaces = len(word_)
-    spaces_char = '_' * length_spaces
-    chars = spaces_char
-    print(spaces_char)
-
-def replace_spaces(spaces, char):
-    chars.replace('_', char)
-
-
-play = True
 lifes = 6
-words = ['movies', 'car', 'lolipoop', 'smartband', 'developer']
-select_word = choice(words)
+play = True
+words = ['microsoft', 'apple', 'netflix', 'facebook', 'alphabet']
+alphabet = list(map(chr, range(97, 123)))
+guesses = []
 
-print('Welcome to Hangman. Guess the word before your tries run out')
-generate_spaces(select_word)
-print(select_word)
 
-while play:
-    ask = input('Enter a guess letter: ').lower()
-    check_letter(select_word, lifes)
+def get_random_word(list_words):
+    word = choice(list_words)
+    return word
+
+
+def get_word_underscores(word_):
+    underscores = '_' * len(word_)
+    return underscores
+
+
+def get_letter():
+    letter_ = input('Guess a letter: ').lower()
+    return letter_
+
+
+def is_valid_letter(letter_):
+    is_string = str == type(letter_)
+    is_letter = letter_ in alphabet
+    return is_string and is_letter
+
+
+def has_letter_in_word(letter_, word_):
+    has_letter = letter_ in word_
+    return has_letter
+
+
+def replace_underscores(underscores_, letter_: str, right_letter: bool):
+
+
+
+
+word = get_random_word(words)
+print(word)
+word_underscores = get_word_underscores(word)
+print(word_underscores)
+letter = get_letter()
+valid_letter = is_valid_letter(letter)
+is_right_letter = has_letter_in_word(letter, word)
+
+
+def game(lifes_):
+    if is_right_letter:
+        print('Good job')
+    else:
+        lifes_ -= 1
+        guesses.append(letter)
+        res = f' Lifes: {lifes_} / Wrong letters: {guesses}'
+        print(res)
+
+
+game(lifes)
+
+
 
